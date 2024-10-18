@@ -1,9 +1,49 @@
 services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+  db:
+    container_name: gymrat-db
+    image: postgres:17-alpine
+    restart: unless-stopped
     ports:
-      - '5432'
+      - 5432:5432
+    networks:
+      - backend
+      - admin
+    volumes:
+      - gymrat-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: gymrat
+      POSTGRES_USER: gymrat
+      POSTGRES_PASSWORD: gymrat
+
+  cloudbeaver:
+    container_name: gymrat-cloudbeaver
+    image: dbeaver/cloudbeaver:24.2.2
+    restart: unless-stopped
+    ports:
+      - 9091:8978
+    networks:
+      - admin
+    volumes:
+      - gymrat-cloudbeaver-data:/opt/cloudbeaver/workspace
+    depends_on:
+      - db
+  app:
+    container_name: gymrat-app
+    build: .
+    restart: on-failure:5
+    ports:
+      - 8081:8080
+    networks:
+      - backend
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://db:5432/gymrat'
+
+volumes:
+  gymrat-db-data:
+  gymrat-cloudbeaver-data:
+
+networks:
+  backend:
+  admin:
