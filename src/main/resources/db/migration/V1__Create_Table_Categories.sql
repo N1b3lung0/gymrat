@@ -4,6 +4,9 @@ CREATE TABLE categories
 (
     id   UUID    NOT NULL,
     name VARCHAR NOT NULL,
+    active BOOLEAN,
+    deleted_at TIMESTAMP WITHOUT TIME ZONE,
+    deleted_by VARCHAR,
     CONSTRAINT pk_categories PRIMARY KEY (id)
 );
 
