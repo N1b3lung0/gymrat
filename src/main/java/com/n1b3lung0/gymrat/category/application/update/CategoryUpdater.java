@@ -21,7 +21,7 @@ public class CategoryUpdater {
         String name = request.getName();
         Category category = finder.findById(request.getId());
         if (StringUtils.isNotBlank(name) && !StringUtils.equals(name, category.getName())) {
-            if (repository.findByNameAndActiveTrue(name).isPresent()) {
+            if (repository.findByName(name).isPresent()) {
                 throw new RuntimeException("Category with name " + name + " already exists");
             }
             category = category.withName(name);

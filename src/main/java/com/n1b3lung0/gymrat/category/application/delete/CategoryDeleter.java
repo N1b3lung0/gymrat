@@ -18,7 +18,7 @@ public class CategoryDeleter {
     @Transactional
     public void delete(String name) {
         Category category = finder.findByName(name);
-        Category deleted = category.delete();
+        Category deleted = category.delete(category, "n1b3lung0");
         repository.save(deleted);
         log.debug("Deleting category with name {}", name);
     }
