@@ -15,13 +15,13 @@ public class CategoryFinder {
 
     @Transactional(readOnly = true)
     public Category findByName(String name) {
-        return repository.findByNameAndActiveTrue(name)
+        return repository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Category with name " + name + " not found"));
     }
 
     @Transactional(readOnly = true)
     public Category findById(String id) {
-        return repository.findByIdAndActiveTrue(UUID.fromString(id))
+        return repository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new RuntimeException("Category with id " + id + " not found"));
     }
 }

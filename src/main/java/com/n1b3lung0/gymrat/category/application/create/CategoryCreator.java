@@ -19,7 +19,7 @@ public class CategoryCreator {
             throw new IllegalArgumentException("Name cannot be empty");
         }
 
-        if (repository.findByNameAndActiveTrue(name).isPresent()) {
+        if (repository.findByName(name).isPresent()) {
             throw new IllegalArgumentException("Category with name " + name + " already exists");
         }
 

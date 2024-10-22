@@ -1,6 +1,8 @@
 package com.n1b3lung0.gymrat.category.domain;
 
+import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,7 +15,6 @@ import lombok.With;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Entity
@@ -35,33 +36,24 @@ public class Category implements Serializable {
     @Column(name = "name", nullable = false, unique = true)
     String name;
 
-    @With(AccessLevel.PRIVATE)
-    @Column(name = "active")
-    Boolean active;
-
-    @With(AccessLevel.PRIVATE)
-    @Column(name = "deleted_at")
-    ZonedDateTime deletedAt;
-
-    @With(AccessLevel.PRIVATE)
-    @Column(name = "deleted_by")
-    String deletedBy;
+    @With
+    @Embedded
+    AuditFields auditFields;
 
     public static Category create(
-            String name
+            String name,
+            String createdBy
     ) {
         return new Category(
                 null,
                 name,
-                Boolean.TRUE,
-                null,
-                null
+                AuditFields.create(createdBy)
         );
     }
 
-    public Category delete() {
-        return withActive(Boolean.FALSE)
-                .withDeletedAt(ZonedDateTime.now())
-                .withDeletedBy(deletedBy);
+    public Category delete(Category category, String deletedBy) {
+        assert category.auditFields != null;
+        AuditFields newAuditFields = category.auditFields.delete(deletedBy);
+        return category.withAuditFields(newAuditFields);
     }
 }

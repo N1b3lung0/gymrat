@@ -12,6 +12,6 @@ public class CategoryCreateRequest {
     private String name;
 
     public Category toCategory(String name) {
-        return Category.create(name);
+        return Category.create(name, "n1b3lung0");
     }
 }
