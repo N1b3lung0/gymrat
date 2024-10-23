@@ -1,4 +1,4 @@
-package com.n1b3lung0.gymrat.category.domain;
+package com.n1b3lung0.gymrat.exercise.domain;
 
 import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import jakarta.persistence.Column;
@@ -18,11 +18,11 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "exercises")
 @Value
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Category implements Serializable {
+public class Exercise implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1L;
@@ -40,20 +40,20 @@ public class Category implements Serializable {
     @Embedded
     AuditFields auditFields;
 
-    public static Category create(
+    public static Exercise create(
             String name,
             String createdBy
     ) {
-        return new Category(
+        return new Exercise(
                 null,
                 name,
                 AuditFields.create(createdBy)
         );
     }
 
-    public Category delete(Category category, String deletedBy) {
-        assert category.auditFields != null;
-        AuditFields newAuditFields = category.auditFields.delete(deletedBy);
-        return category.withAuditFields(newAuditFields);
+    public Exercise delete(Exercise exercise, String deletedBy) {
+        assert exercise.auditFields != null;
+        AuditFields newAuditFields = exercise.auditFields.delete(deletedBy);
+        return exercise.withAuditFields(newAuditFields);
     }
 }

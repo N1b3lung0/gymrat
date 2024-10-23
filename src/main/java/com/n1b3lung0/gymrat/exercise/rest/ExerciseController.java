@@ -1,13 +1,13 @@
-package com.n1b3lung0.gymrat.category.rest;
+package com.n1b3lung0.gymrat.exercise.rest;
 
-import com.n1b3lung0.gymrat.category.application.create.CategoryCreateRequest;
-import com.n1b3lung0.gymrat.category.application.create.CategoryCreator;
-import com.n1b3lung0.gymrat.category.application.delete.CategoryDeleter;
-import com.n1b3lung0.gymrat.category.application.find.CategoryFinder;
-import com.n1b3lung0.gymrat.category.application.find.CategoryResponse;
-import com.n1b3lung0.gymrat.category.application.update.CategoryUpdateRequest;
-import com.n1b3lung0.gymrat.category.application.update.CategoryUpdater;
-import com.n1b3lung0.gymrat.category.domain.Category;
+import com.n1b3lung0.gymrat.exercise.application.create.ExerciseCreateRequest;
+import com.n1b3lung0.gymrat.exercise.application.create.ExerciseCreator;
+import com.n1b3lung0.gymrat.exercise.application.delete.ExerciseDeleter;
+import com.n1b3lung0.gymrat.exercise.application.find.ExerciseFinder;
+import com.n1b3lung0.gymrat.exercise.application.find.ExerciseResponse;
+import com.n1b3lung0.gymrat.exercise.application.update.ExerciseUpdateRequest;
+import com.n1b3lung0.gymrat.exercise.application.update.ExerciseUpdater;
+import com.n1b3lung0.gymrat.exercise.domain.Exercise;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,35 +24,35 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/exercises")
 @RequiredArgsConstructor
-public class CategoryController {
+public class ExerciseController {
 
-    private final CategoryFinder finder;
-    private final CategoryCreator creator;
-    private final CategoryUpdater updater;
-    private final CategoryDeleter deleter;
+    private final ExerciseFinder finder;
+    private final ExerciseCreator creator;
+    private final ExerciseUpdater updater;
+    private final ExerciseDeleter deleter;
 
     private static final String NAME_PATH = "/{name}";
 
     @GetMapping(value = NAME_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CategoryResponse> findByName(@PathVariable String name) {
-        return ResponseEntity.ok(CategoryResponse.fromCategory(finder.findByName(name)));
+    public ResponseEntity<ExerciseResponse> findByName(@PathVariable String name) {
+        return ResponseEntity.ok(ExerciseResponse.fromExercise(finder.findByName(name)));
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> create(@RequestBody CategoryCreateRequest request) {
-        Category saved = creator.create(request);
+    public ResponseEntity<Void> create(@RequestBody ExerciseCreateRequest request) {
+        Exercise saved = creator.create(request);
         URI location = UriComponentsBuilder
-                .fromPath("/categories/{id}")
+                .fromPath("/exercises/{id}")
                 .buildAndExpand(saved.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
     }
 
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CategoryResponse> update(@RequestBody CategoryUpdateRequest request) {
-        return ResponseEntity.ok(CategoryResponse.fromCategory(updater.update(request)));
+    public ResponseEntity<ExerciseResponse> update(@RequestBody ExerciseUpdateRequest request) {
+        return ResponseEntity.ok(ExerciseResponse.fromExercise(updater.update(request)));
     }
 
     @DeleteMapping(value = NAME_PATH, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-CREATE TABLE categories
+CREATE TABLE exercises
 (
     id   UUID    NOT NULL,
     name VARCHAR NOT NULL,
@@ -11,8 +11,8 @@ CREATE TABLE categories
     active BOOLEAN,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
     deleted_by VARCHAR,
-    CONSTRAINT pk_categories PRIMARY KEY (id)
+    CONSTRAINT pk_exercises PRIMARY KEY (id)
 );
 
-ALTER TABLE categories
-    ADD CONSTRAINT uc_categories_name UNIQUE (name);
+ALTER TABLE exercises
+    ADD CONSTRAINT uc_exercises_name UNIQUE (name);
