@@ -21,7 +21,6 @@ import lombok.With;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Enumeration;
 import java.util.Set;
 import java.util.UUID;
 

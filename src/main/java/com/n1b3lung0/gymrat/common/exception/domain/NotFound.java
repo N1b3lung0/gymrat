@@ -7,7 +7,7 @@ public class NotFound extends RuntimeException {
     @Serial
     private static final long serialVersionUID = -1L;
 
-    public NotFound(String message, String id) {
-        super(String.format(message, id));
+    public NotFound(String message, String field, String value) {
+        super(String.format(message, field, value));
     }
 }
