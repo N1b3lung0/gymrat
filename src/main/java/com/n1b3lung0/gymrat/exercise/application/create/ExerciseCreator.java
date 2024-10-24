@@ -1,5 +1,6 @@
 package com.n1b3lung0.gymrat.exercise.application.create;
 
+import com.n1b3lung0.gymrat.common.log.application.LogConstants;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
 import com.n1b3lung0.gymrat.exercise.domain.ExerciseRepository;
 import com.n1b3lung0.gymrat.exercise.domain.exception.ExerciseAlreadyExists;
@@ -15,10 +16,7 @@ public class ExerciseCreator {
 
     public Exercise create(ExerciseCreateRequest request) {
         String name = request.getName();
-
-        if (repository.findByName(name).isPresent()) {
-            throw new ExerciseAlreadyExists(name);
-        }
+        if (repository.findByName(name).isPresent()) throw new ExerciseAlreadyExists(name);
 
         Exercise exercise = request.toExercise(
                 name,
@@ -27,8 +25,9 @@ public class ExerciseCreator {
                 request.getPrimaryMuscle(),
                 request.getSecondaryMuscles()
         );
+
         Exercise created = repository.save(exercise);
-        log.debug("Created Exercise with name {} and id {}", name, created.getId());
+        log.debug(LogConstants.CREATED, "EXERCISE", created);
         return created;
     }
 }
