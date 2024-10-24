@@ -1,5 +1,6 @@
 package com.n1b3lung0.gymrat.exercise.application.delete;
 
+import com.n1b3lung0.gymrat.common.log.application.LogConstants;
 import com.n1b3lung0.gymrat.exercise.application.find.ExerciseFinder;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
 import com.n1b3lung0.gymrat.exercise.domain.ExerciseRepository;
@@ -20,6 +21,6 @@ public class ExerciseDeleter {
         Exercise exercise = finder.findByName(name);
         Exercise deleted = exercise.delete(exercise, "n1b3lung0");
         repository.save(deleted);
-        log.debug("Deleting exercise with name {}", name);
+        log.debug(LogConstants.DELETED, "EXERCISE", deleted);
     }
 }

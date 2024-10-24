@@ -1,13 +1,13 @@
 package com.n1b3lung0.gymrat.exercise.application.update;
 
 import com.n1b3lung0.gymrat.common.exception.application.ExceptionConstants;
+import com.n1b3lung0.gymrat.common.log.application.LogConstants;
 import com.n1b3lung0.gymrat.exercise.application.find.ExerciseFinder;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
 import com.n1b3lung0.gymrat.exercise.domain.ExerciseRepository;
 import com.n1b3lung0.gymrat.exercise.domain.Level;
 import com.n1b3lung0.gymrat.exercise.domain.Muscle;
 import com.n1b3lung0.gymrat.exercise.domain.Routine;
-import com.n1b3lung0.gymrat.exercise.domain.exception.ExerciseAlreadyExists;
 import com.n1b3lung0.gymrat.exercise.domain.exception.ExerciseNotValid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -59,7 +59,7 @@ public class ExerciseUpdater {
 
         Exercise updated = exercise.update(exercise, "n1b3lung0");
         exercise = repository.save(updated);
-        log.debug("Updated Exercise with name {}", exercise.getName());
+        log.debug(LogConstants.UPDATED, "EXERCISE", exercise);
         return exercise;
     }
 
