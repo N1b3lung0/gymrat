@@ -1,5 +1,8 @@
 package com.n1b3lung0.gymrat.exercise.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum Muscle {
     CHEST("chest"),
     BACK("back"),
@@ -23,7 +26,4 @@ public enum Muscle {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
 }

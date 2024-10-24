@@ -23,7 +23,13 @@ public class ExerciseCreator {
             throw new IllegalArgumentException("Exercise with name " + name + " already exists");
         }
 
-        Exercise exercise = request.toExercise(name);
+        Exercise exercise = request.toExercise(
+                name,
+                request.getLevel(),
+                request.getRoutines(),
+                request.getPrimaryMuscle(),
+                request.getSecondaryMuscles()
+        );
         Exercise created = repository.save(exercise);
         log.debug("Created Exercise with name {} and id {}", name, created.getId());
         return created;

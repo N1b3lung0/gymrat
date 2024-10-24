@@ -1,5 +1,8 @@
 package com.n1b3lung0.gymrat.exercise.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum Routine {
     PUSH("push"),
     PULL("pull"),
@@ -15,7 +18,4 @@ public enum Routine {
         this.type = type;
     }
 
-    public String getType() {
-        return type;
-    }
 }

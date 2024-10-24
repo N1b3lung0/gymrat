@@ -1,7 +1,10 @@
 package com.n1b3lung0.gymrat.exercise.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum Level {
-    BEGINNERS("beginners"),
+    BEGINNER("beginner"),
     INTERMEDIATE("intermediate"),
     ADVANCED("advanced");
 
@@ -11,7 +14,4 @@ public enum Level {
         this.type = type;
     }
 
-    public String getType() {
-        return type;
-    }
 }

@@ -1,8 +1,16 @@
-INSERT INTO exercises (id, name, created_at, created_by, updated_at, updated_by, active, deleted_at, deleted_by)
-VALUES (uuid_generate_v4(), 'Bench press', NOW(), 'n1b3lung0', null, null, TRUE, null, null);
+INSERT INTO exercises (id, name, level, primary_muscle, created_at, created_by, updated_at, updated_by, active, deleted_at, deleted_by) VALUES
+('902c31ad-ff45-4303-86e4-411da39f476c', 'chest', 'BEGINNER', 'CHEST', NOW(), 'n1b3lung0', null, null, TRUE, null, null),
+('4c80c1d0-0ac5-4381-af8f-12189addecf3', 'triceps', 'BEGINNER', 'CHEST',  NOW(), 'n1b3lung0', null, null, TRUE, null, null),
+('b88b3af2-d47a-462a-8b51-e7f3ce3fd0b5', 'biceps', 'BEGINNER', 'CHEST',  NOW(), 'n1b3lung0', null, null, TRUE, null, null);
 
-INSERT INTO exercises (id, name, created_at, created_by, updated_at, updated_by, active, deleted_at, deleted_by)
-VALUES (uuid_generate_v4(), 'Curl Biceps', NOW(), 'n1b3lung0', null, null, TRUE, null, null);
+INSERT INTO routines(exercise_id, routine) VALUES
+('902c31ad-ff45-4303-86e4-411da39f476c', 'PUSH'),
+('902c31ad-ff45-4303-86e4-411da39f476c', 'PULL'),
+('4c80c1d0-0ac5-4381-af8f-12189addecf3', 'PUSH'),
+('b88b3af2-d47a-462a-8b51-e7f3ce3fd0b5', 'PUSH');
 
-INSERT INTO exercises (id, name, created_at, created_by, updated_at, updated_by, active, deleted_at, deleted_by)
-VALUES (uuid_generate_v4(), 'Triceps', NOW(), 'n1b3lung0', null, null, TRUE, null, null);
+INSERT INTO secondary_muscles(exercise_id, secondary_muscle) VALUES
+('902c31ad-ff45-4303-86e4-411da39f476c', 'BICEPS'),
+('902c31ad-ff45-4303-86e4-411da39f476c', 'TRICEPS'),
+('4c80c1d0-0ac5-4381-af8f-12189addecf3', 'BICEPS'),
+('b88b3af2-d47a-462a-8b51-e7f3ce3fd0b5', 'BICEPS');
