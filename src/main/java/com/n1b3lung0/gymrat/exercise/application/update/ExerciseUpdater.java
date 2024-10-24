@@ -1,15 +1,17 @@
 package com.n1b3lung0.gymrat.exercise.application.update;
 
+import com.n1b3lung0.gymrat.common.exception.application.ExceptionConstants;
 import com.n1b3lung0.gymrat.exercise.application.find.ExerciseFinder;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
 import com.n1b3lung0.gymrat.exercise.domain.ExerciseRepository;
 import com.n1b3lung0.gymrat.exercise.domain.Level;
 import com.n1b3lung0.gymrat.exercise.domain.Muscle;
 import com.n1b3lung0.gymrat.exercise.domain.Routine;
+import com.n1b3lung0.gymrat.exercise.domain.exception.ExerciseAlreadyExists;
+import com.n1b3lung0.gymrat.exercise.domain.exception.ExerciseNotValid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.SetUtils;
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +32,7 @@ public class ExerciseUpdater {
 
         if (StringUtils.isNotBlank(name) && !StringUtils.equals(name, exercise.getName())) {
             if (repository.findByName(name).isPresent()) {
-                throw new RuntimeException("Exercise with name " + name + " already exists");
+                throw new ExerciseNotValid(name, String.format(ExceptionConstants.EXERCISE_REPEATED, name));
             }
             exercise = exercise.withName(name);
         }
