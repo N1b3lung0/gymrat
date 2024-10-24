@@ -70,7 +70,8 @@ public class AuditFields implements Serializable {
     }
 
     public AuditFields update(String updatedBy) {
-        return withUpdatedAt(ZonedDateTime.now()).withUpdatedBy(updatedBy);
+        return withUpdatedAt(ZonedDateTime.now())
+                .withUpdatedBy(updatedBy);
     }
 
     public AuditFields delete(String deletedBy) {
