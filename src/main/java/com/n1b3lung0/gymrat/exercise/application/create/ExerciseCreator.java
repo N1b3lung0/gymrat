@@ -7,6 +7,7 @@ import com.n1b3lung0.gymrat.exercise.domain.exception.ExerciseAlreadyExists;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class ExerciseCreator {
     private final ExerciseRepository repository;
 
+    @Transactional
     public Exercise create(ExerciseCreateRequest request) {
         String name = request.getName();
         if (repository.findByName(name).isPresent()) throw new ExerciseAlreadyExists(name);

@@ -27,9 +27,9 @@ public class ExerciseUpdater {
 
     @Transactional
     public Exercise update(ExerciseUpdateRequest request) {
-        String name = request.getName();
         Exercise exercise = finder.findById(request.getId());
 
+        String name = request.getName();
         if (StringUtils.isNotBlank(name) && !StringUtils.equals(name, exercise.getName())) {
             if (repository.findByName(name).isPresent()) {
                 throw new ExerciseNotValid(name, String.format(ExceptionConstants.EXERCISE_REPEATED, name));
