@@ -8,6 +8,7 @@ import com.n1b3lung0.gymrat.exercise.application.find.ExerciseResponse;
 import com.n1b3lung0.gymrat.exercise.application.update.ExerciseUpdateRequest;
 import com.n1b3lung0.gymrat.exercise.application.update.ExerciseUpdater;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +42,7 @@ public class ExerciseController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> create(@RequestBody ExerciseCreateRequest request) {
+    public ResponseEntity<Void> create(@Valid @RequestBody ExerciseCreateRequest request) {
         Exercise saved = creator.create(request);
         URI location = UriComponentsBuilder
                 .fromPath("/exercises/{id}")
@@ -51,7 +52,7 @@ public class ExerciseController {
     }
 
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ExerciseResponse> update(@RequestBody ExerciseUpdateRequest request) {
+    public ResponseEntity<ExerciseResponse> update(@Valid @RequestBody ExerciseUpdateRequest request) {
         return ResponseEntity.ok(ExerciseResponse.fromExercise(updater.update(request)));
     }
 
