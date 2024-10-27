@@ -32,6 +32,12 @@ spring:
         exposure:
           include: [ "health" ]
 
+# DOCS:
+springdoc:
+  swagger-ui:
+    groups-order: DESC
+    operationsSorter: method
+
 # LOG LEVELS
 logging:
   level:
