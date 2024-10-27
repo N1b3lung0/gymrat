@@ -22,6 +22,7 @@ public class ExerciseCreator {
 
         Exercise exercise = request.toExercise(
                 name,
+                request.getDescription(),
                 request.getLevel(),
                 request.getRoutines(),
                 request.getPrimaryMuscle(),
