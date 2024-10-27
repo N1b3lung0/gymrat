@@ -8,6 +8,7 @@ import com.n1b3lung0.gymrat.exercise.application.find.ExerciseResponse;
 import com.n1b3lung0.gymrat.exercise.application.update.ExerciseUpdateRequest;
 import com.n1b3lung0.gymrat.exercise.application.update.ExerciseUpdater;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -27,6 +28,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/exercises")
 @RequiredArgsConstructor
+@Tag(name = "Exercises", description = "Endpoints to perform operations with exercises")
 public class ExerciseController {
 
     private final ExerciseFinder finder;
