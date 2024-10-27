@@ -1,13 +1,12 @@
 package com.n1b3lung0.gymrat.exercise.application.find;
 
+import com.n1b3lung0.gymrat.common.uuid.UUIDUtils;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
 import com.n1b3lung0.gymrat.exercise.domain.ExerciseRepository;
 import com.n1b3lung0.gymrat.exercise.domain.exception.ExerciseNotFound;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +21,7 @@ public class ExerciseFinder {
 
     @Transactional(readOnly = true)
     public Exercise findById(String id) {
-        return repository.findById(UUID.fromString(id))
+        return repository.findById(UUIDUtils.fromString(id))
                 .orElseThrow(() -> new ExerciseNotFound("id", id));
     }
 }

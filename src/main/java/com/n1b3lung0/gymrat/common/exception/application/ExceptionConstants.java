@@ -16,6 +16,10 @@ public final class ExceptionConstants {
     public static final String CONSTRAINT_VIOLATION = "Constraint violation";
     public static final String ARGUMENT_NOT_VALID = "Method argument not valid";
 
+    // ID
+    public static final String ID_REQUIRED = "Id is required";
+    public static final String UUID_NOT_VALID = "'%s' is not a valid UUID";
+
     // EXERCISE
     public static final String EXERCISE_NOT_FOUND = "An exercise with %s '%s' could not be found";
     public static final String EXERCISE_NOT_VALID = "Exercise '%s' is not valid. Reason: '%s'";
