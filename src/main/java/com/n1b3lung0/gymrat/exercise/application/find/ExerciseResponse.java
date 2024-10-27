@@ -24,6 +24,8 @@ public class ExerciseResponse {
 
     private String name;
 
+    private String description;
+
     private Level level;
 
     private Set<Routine> routines;
@@ -59,6 +61,7 @@ public class ExerciseResponse {
         return new ExerciseResponse(
                 String.valueOf(exercise.getId()),
                 exercise.getName(),
+                exercise.getDescription(),
                 exercise.getLevel(),
                 exercise.getRoutines(),
                 exercise.getPrimaryMuscle(),

@@ -22,6 +22,8 @@ public class ExerciseCreateRequest {
     @Size(min = 4, max = 255, message = ExceptionConstants.EXERCISE_NAME_LENGTH_NOT_VALID)
     private String name;
 
+    private String description;
+
     private Level level;
 
     private Set<Routine> routines;
@@ -32,6 +34,7 @@ public class ExerciseCreateRequest {
 
     public Exercise toExercise(
             String name,
+            String description,
             Level level,
             Set<Routine> routines,
             Muscle primaryMuscle,
@@ -39,6 +42,7 @@ public class ExerciseCreateRequest {
     ) {
         return Exercise.create(
                 name,
+                description,
                 level,
                 routines,
                 primaryMuscle,

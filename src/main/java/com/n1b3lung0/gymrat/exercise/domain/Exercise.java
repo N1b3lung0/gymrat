@@ -44,6 +44,10 @@ public class Exercise implements Serializable {
     String name;
 
     @With
+    @Column(name = "description")
+    String description;
+
+    @With
     @Column(name = "level")
     @Enumerated(EnumType.STRING)
     Level level;
@@ -73,6 +77,7 @@ public class Exercise implements Serializable {
 
     public static Exercise create(
             String name,
+            String description,
             Level level,
             Set<Routine> routines,
             Muscle primaryMuscle,
@@ -82,6 +87,7 @@ public class Exercise implements Serializable {
         return new Exercise(
                 null,
                 name,
+                description,
                 level,
                 routines,
                 primaryMuscle,

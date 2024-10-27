@@ -2,6 +2,7 @@ CREATE TABLE exercises
 (
     id   UUID    NOT NULL,
     name VARCHAR NOT NULL,
+    description VARCHAR,
     level VARCHAR(255),
     primary_muscle VARCHAR(255),
     created_at TIMESTAMP WITHOUT TIME ZONE,
