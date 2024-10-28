@@ -1,8 +1,10 @@
 package com.n1b3lung0.gymrat.exercise.rest;
 
+import com.n1b3lung0.gymrat.common.criteria.application.PageResponse;
 import com.n1b3lung0.gymrat.exercise.application.create.ExerciseCreateRequest;
 import com.n1b3lung0.gymrat.exercise.application.create.ExerciseCreator;
 import com.n1b3lung0.gymrat.exercise.application.delete.ExerciseDeleter;
+import com.n1b3lung0.gymrat.exercise.application.find.ExerciseFindRequest;
 import com.n1b3lung0.gymrat.exercise.application.find.ExerciseFinder;
 import com.n1b3lung0.gymrat.exercise.application.find.ExerciseResponse;
 import com.n1b3lung0.gymrat.exercise.application.update.ExerciseUpdateRequest;
@@ -41,6 +43,11 @@ public class ExerciseController {
     @GetMapping(value = NAME_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ExerciseResponse> findByName(@PathVariable String name) {
         return ResponseEntity.ok(ExerciseResponse.fromExercise(finder.findByName(name)));
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PageResponse<ExerciseResponse>> findByCriteria(@Valid ExerciseFindRequest request) {
+        return ResponseEntity.ok(finder.find(request));
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
