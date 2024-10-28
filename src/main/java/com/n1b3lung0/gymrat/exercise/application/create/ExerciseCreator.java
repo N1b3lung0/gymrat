@@ -23,6 +23,8 @@ public class ExerciseCreator {
         Exercise exercise = request.toExercise(
                 name,
                 request.getDescription(),
+                request.getImage(),
+                request.getVideo(),
                 request.getLevel(),
                 request.getRoutines(),
                 request.getPrimaryMuscle(),
