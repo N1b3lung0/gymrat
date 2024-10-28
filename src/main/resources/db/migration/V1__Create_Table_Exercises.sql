@@ -1,17 +1,23 @@
 CREATE TABLE exercises
 (
     id   UUID    NOT NULL,
-    name VARCHAR NOT NULL,
-    description VARCHAR,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
+    image_name VARCHAR(255),
+    image_description VARCHAR(255),
+    image_url VARCHAR(255),
+    video_name VARCHAR(255),
+    video_description VARCHAR(255),
+    video_url VARCHAR(255),
     level VARCHAR(255),
     primary_muscle VARCHAR(255),
     created_at TIMESTAMP WITHOUT TIME ZONE,
-    created_by VARCHAR,
+    created_by VARCHAR(255),
     updated_at TIMESTAMP WITHOUT TIME ZONE,
-    updated_by VARCHAR,
+    updated_by VARCHAR(255),
     active BOOLEAN,
     deleted_at TIMESTAMP WITHOUT TIME ZONE,
-    deleted_by VARCHAR,
+    deleted_by VARCHAR(255),
     CONSTRAINT pk_exercises PRIMARY KEY (id)
 );
 
@@ -19,6 +25,9 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 ALTER TABLE exercises
     ADD CONSTRAINT uc_exercises_name UNIQUE (name);
+
+ALTER TABLE exercises
+    ALTER COLUMN level TYPE VARCHAR(255) USING (level::VARCHAR(255));
 
 CREATE TABLE routines
 (
@@ -28,9 +37,6 @@ CREATE TABLE routines
 
 ALTER TABLE routines
     ADD CONSTRAINT fk_routines_on_exercise FOREIGN KEY (exercise_id) REFERENCES exercises (id);
-
-ALTER TABLE exercises
-    ALTER COLUMN level TYPE VARCHAR(255) USING (level::VARCHAR(255));
 
 ALTER TABLE routines
     ALTER COLUMN routine TYPE VARCHAR(255) USING (routine::VARCHAR(255));

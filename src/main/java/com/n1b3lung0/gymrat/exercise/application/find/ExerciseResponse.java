@@ -2,6 +2,7 @@ package com.n1b3lung0.gymrat.exercise.application.find;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
+import com.n1b3lung0.gymrat.common.vo.File;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
 import com.n1b3lung0.gymrat.exercise.domain.Level;
 import com.n1b3lung0.gymrat.exercise.domain.Muscle;
@@ -11,7 +12,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
 import java.util.Set;
 
 @Data
@@ -26,6 +26,10 @@ public class ExerciseResponse {
 
     private String description;
 
+    private File image;
+
+    private File video;
+
     private Level level;
 
     private Set<Routine> routines;
@@ -35,24 +39,7 @@ public class ExerciseResponse {
     private Set<Muscle> secondaryMuscles;
 
     @EqualsAndHashCode.Exclude
-    private ZonedDateTime createdAt;
-
-    @EqualsAndHashCode.Exclude
-    private String createdBy;
-
-    @EqualsAndHashCode.Exclude
-    private ZonedDateTime updatedAt;
-
-    @EqualsAndHashCode.Exclude
-    private String updatedBy;
-
-    private Boolean active;
-
-    @EqualsAndHashCode.Exclude
-    private ZonedDateTime deletedAt;
-
-    @EqualsAndHashCode.Exclude
-    private String deletedBy;
+    private AuditFields auditFields;
 
     public static ExerciseResponse fromExercise(Exercise exercise) {
         assert exercise != null;
@@ -62,17 +49,13 @@ public class ExerciseResponse {
                 String.valueOf(exercise.getId()),
                 exercise.getName(),
                 exercise.getDescription(),
+                exercise.getImage(),
+                exercise.getVideo(),
                 exercise.getLevel(),
                 exercise.getRoutines(),
                 exercise.getPrimaryMuscle(),
                 exercise.getSecondaryMuscles(),
-                auditFields.getCreatedAt(),
-                auditFields.getCreatedBy(),
-                auditFields.getUpdatedAt(),
-                auditFields.getUpdatedBy(),
-                auditFields.getActive(),
-                auditFields.getDeletedAt(),
-                auditFields.getDeletedBy()
+                auditFields
         );
     }
 }

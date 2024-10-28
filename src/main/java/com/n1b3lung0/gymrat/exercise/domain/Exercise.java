@@ -1,6 +1,9 @@
 package com.n1b3lung0.gymrat.exercise.domain;
 
 import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
+import com.n1b3lung0.gymrat.common.vo.File;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -48,6 +51,24 @@ public class Exercise implements Serializable {
     String description;
 
     @With
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "name", column = @Column(name = "image_name")),
+            @AttributeOverride(name = "description", column = @Column(name = "image_description")),
+            @AttributeOverride(name = "url", column = @Column(name = "image_url")),
+    })
+    File image;
+
+    @With
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "name", column = @Column(name = "video_name")),
+            @AttributeOverride(name = "description", column = @Column(name = "video_description")),
+            @AttributeOverride(name = "url", column = @Column(name = "video_url")),
+    })
+    File video;
+
+    @With
     @Column(name = "level")
     @Enumerated(EnumType.STRING)
     Level level;
@@ -78,6 +99,8 @@ public class Exercise implements Serializable {
     public static Exercise create(
             String name,
             String description,
+            File image,
+            File video,
             Level level,
             Set<Routine> routines,
             Muscle primaryMuscle,
@@ -88,6 +111,8 @@ public class Exercise implements Serializable {
                 null,
                 name,
                 description,
+                image,
+                video,
                 level,
                 routines,
                 primaryMuscle,
