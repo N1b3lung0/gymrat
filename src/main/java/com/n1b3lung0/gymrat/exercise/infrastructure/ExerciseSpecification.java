@@ -16,9 +16,7 @@ public final class ExerciseSpecification {
         if (StringUtils.isNotBlank(query)) {
             Specification<Exercise> byName = byFieldValueLike("name", query);
             Specification<Exercise> byDescription = byFieldValueLike("description", query);
-            Specification<Exercise> byLevel = byFieldValueLike("level", query);
-            Specification<Exercise> byPrimaryMuscle = byFieldValueLike("primaryMuscle", query);
-            specification = specification.and(byName.or(byDescription.or(byLevel.or(byPrimaryMuscle))));
+            specification = specification.and(byName.or(byDescription));
         }
         return specification;
     }

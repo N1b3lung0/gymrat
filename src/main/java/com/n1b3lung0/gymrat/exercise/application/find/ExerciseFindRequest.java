@@ -27,6 +27,6 @@ public class ExerciseFindRequest {
         Sorting sorting = StringUtils.isNotBlank(sortBy) && sortDirection != null
                 ? Sorting.of(StringUtils.lowerCase(sortBy), sortDirection)
                 : Sorting.byDefault();
-        return new ExerciseSearchCriteria(pagination, sorting);
+        return new ExerciseSearchCriteria(pagination, sorting, query);
     }
 }
