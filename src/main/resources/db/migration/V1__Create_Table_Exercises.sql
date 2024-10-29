@@ -22,6 +22,7 @@ CREATE TABLE exercises
 );
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS unaccent;
 
 ALTER TABLE exercises
     ADD CONSTRAINT uc_exercises_name UNIQUE (name);
