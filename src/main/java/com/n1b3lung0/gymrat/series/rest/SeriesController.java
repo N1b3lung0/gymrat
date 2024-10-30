@@ -36,7 +36,7 @@ public class SeriesController {
 
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SeriesResponse> finfById(@PathVariable("id") String id) {
-        return new ResponseEntity<>(HttpStatusCode.valueOf(200));
+        return ResponseEntity.ok(SeriesResponse.fromSeries(finder.findById(id)));
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
