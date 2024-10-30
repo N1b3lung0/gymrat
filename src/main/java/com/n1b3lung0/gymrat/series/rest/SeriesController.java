@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/series")
@@ -41,7 +44,12 @@ public class SeriesController {
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> create(@RequestBody @Valid SeriesCreateRequest request) {
-        return new ResponseEntity<>(HttpStatusCode.valueOf(201));
+        Series series = creator.create(request);
+        URI location = UriComponentsBuilder
+                .fromPath("/series/{id}")
+                .buildAndExpand(series.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)

@@ -5,4 +5,5 @@ import java.util.UUID;
 
 public interface SeriesRepository {
     Optional<Series> findById(UUID id);
+    Series save(Series series);
 }
