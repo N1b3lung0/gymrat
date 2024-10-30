@@ -58,7 +58,8 @@ public class SeriesController {
     }
 
     @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SeriesResponse> delete(@PathVariable("id") String id) {
-        return new ResponseEntity<>(HttpStatusCode.valueOf(204));
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
+        deleter.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
