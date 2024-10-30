@@ -25,4 +25,7 @@ public final class ExceptionConstants {
     public static final String EXERCISE_NOT_VALID = "Exercise '%s' is not valid. Reason: '%s'";
     public static final String EXERCISE_REPEATED = "An exercise with name %s has already been created";
     public static final String EXERCISE_NAME_LENGTH_NOT_VALID = "Name exercise must be between {min} and {max} characters long";
+
+    // SERIES
+    public static final String SERIES_NOT_FOUND = "A series with %s '%s' could not be found";
 }
