@@ -2,6 +2,8 @@ package com.n1b3lung0.gymrat.exercise.domain;
 
 import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import com.n1b3lung0.gymrat.common.vo.File;
+import com.n1b3lung0.gymrat.exercise_series.domain.ExerciseSeries;
+
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CollectionTable;
@@ -15,15 +17,19 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import lombok.Value;
 import lombok.With;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -92,6 +98,11 @@ public class Exercise implements Serializable {
     @CollectionTable(name = "secondary_muscles", joinColumns = @JoinColumn(name = "exercise_id"))
     Set<Muscle> secondaryMuscles;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "exercise")
+    Set<ExerciseSeries> exerciseSeries;
+
     @With
     @Embedded
     AuditFields auditFields;
@@ -117,6 +128,7 @@ public class Exercise implements Serializable {
                 routines,
                 primaryMuscle,
                 secondaryMuscles,
+                new HashSet<>(),
                 AuditFields.create(createdBy)
         );
     }

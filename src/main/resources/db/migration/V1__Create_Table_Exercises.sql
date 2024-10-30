@@ -1,3 +1,6 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS unaccent;
+
 CREATE TABLE exercises
 (
     id                UUID NOT NULL,
@@ -20,9 +23,6 @@ CREATE TABLE exercises
     deleted_by        VARCHAR(255),
     CONSTRAINT pk_exercises PRIMARY KEY (id)
 );
-
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-CREATE EXTENSION IF NOT EXISTS unaccent;
 
 ALTER TABLE exercises
     ADD CONSTRAINT uc_exercises_name UNIQUE (name);
