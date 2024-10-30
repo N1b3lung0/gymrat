@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum RestTime {
 
     THIRTY_SECONDS("30"),
-    ONE_MINUTE("60"),
+    SIXTY_SECONDS("60"),
     NINETY_SECONDS("90"),
     TWO_MINUTES("120"),
     THREE_MINUTES("180"),

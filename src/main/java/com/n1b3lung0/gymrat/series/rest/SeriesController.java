@@ -54,7 +54,7 @@ public class SeriesController {
 
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SeriesResponse> update(@RequestBody @Valid SeriesUpdateRequest request) {
-        return new ResponseEntity<>(HttpStatusCode.valueOf(200));
+        return ResponseEntity.ok(SeriesResponse.fromSeries(updater.update(request)));
     }
 
     @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
