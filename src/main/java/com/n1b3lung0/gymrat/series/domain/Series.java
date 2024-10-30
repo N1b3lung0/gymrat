@@ -1,6 +1,7 @@
 package com.n1b3lung0.gymrat.series.domain;
 
 import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
+import com.n1b3lung0.gymrat.exercise_series.domain.ExerciseSeries;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -8,10 +9,14 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import lombok.Value;
 import lombok.With;
 
@@ -68,6 +73,12 @@ public class Series implements Serializable {
     @Enumerated(EnumType.STRING)
     RestTime restTime;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne
+    @JoinColumn(name = "exercise_series_id", nullable = false)
+    ExerciseSeries exerciseSeries;
+
     @With
     @Embedded
     AuditFields auditFields;
@@ -93,6 +104,7 @@ public class Series implements Serializable {
                 startSeries,
                 endSeries,
                 restTime,
+                null,
                 AuditFields.create(createdBy)
         );
     }
