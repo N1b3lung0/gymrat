@@ -28,4 +28,7 @@ public final class ExceptionConstants {
 
     // SERIES
     public static final String SERIES_NOT_FOUND = "A series with %s '%s' could not be found";
+
+    // EXERCISE-SERIES
+    public static final String EXERCISE_SERIES_NOT_FOUND = "An Exercise Series with %s '%s' could not be found";
 }
