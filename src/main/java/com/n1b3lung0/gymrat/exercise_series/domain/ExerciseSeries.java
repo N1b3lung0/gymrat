@@ -41,12 +41,14 @@ public class ExerciseSeries implements Serializable {
     @Column(name = "id", nullable = false, updatable = false, unique = true)
     UUID id;
 
+    @With
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne
     @JoinColumn(name = "exercise_id", nullable = false)
     Exercise exercise;
 
+    @With
     @OneToMany(mappedBy = "exerciseSeries")
     Set<Series> series;
 
