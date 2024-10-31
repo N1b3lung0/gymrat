@@ -1,8 +1,10 @@
 package com.n1b3lung0.gymrat.exercise_series.domain;
 
+import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
 import com.n1b3lung0.gymrat.series.domain.Series;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -16,6 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.Value;
+import lombok.With;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -47,13 +50,19 @@ public class ExerciseSeries implements Serializable {
     @OneToMany(mappedBy = "exerciseSeries")
     Set<Series> series;
 
-    public static ExerciseSeries create(
+    @With
+    @Embedded
+    AuditFields auditFields;
 
+    public static ExerciseSeries create(
+            Exercise exercise,
+            String createdBy
     ) {
         return new ExerciseSeries(
                 null,
-                null,
-                new HashSet<>()
+                exercise,
+                new HashSet<>(),
+                AuditFields.create(createdBy)
         );
     }
 }
