@@ -2,6 +2,13 @@ CREATE TABLE exercise_series
 (
     id          UUID NOT NULL,
     exercise_id UUID NOT NULL,
+    created_at        TIMESTAMP WITHOUT TIME ZONE,
+    created_by        VARCHAR(255),
+    updated_at        TIMESTAMP WITHOUT TIME ZONE,
+    updated_by        VARCHAR(255),
+    active            BOOLEAN,
+    deleted_at        TIMESTAMP WITHOUT TIME ZONE,
+    deleted_by        VARCHAR(255),
     CONSTRAINT pk_exercise_series PRIMARY KEY (id)
 );
 
