@@ -31,6 +31,8 @@ public class SeriesCreateRequest {
 
     private RestTime restTime;
 
+    private String exerciseSeriesId;
+
     public Series toSeries(
             Integer serialNumber,
             Integer repetitionsToDo,

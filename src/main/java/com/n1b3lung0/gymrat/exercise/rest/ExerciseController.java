@@ -51,7 +51,7 @@ public class ExerciseController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> create(@Valid @RequestBody ExerciseCreateRequest request) {
+    public ResponseEntity<Void> create(@RequestBody @Valid ExerciseCreateRequest request) {
         Exercise saved = creator.create(request);
         URI location = UriComponentsBuilder
                 .fromPath("/exercises/{id}")

@@ -73,6 +73,7 @@ public class Series implements Serializable {
     @Enumerated(EnumType.STRING)
     RestTime restTime;
 
+    @With
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne
