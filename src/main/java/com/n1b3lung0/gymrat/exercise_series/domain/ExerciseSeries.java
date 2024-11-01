@@ -67,4 +67,11 @@ public class ExerciseSeries implements Serializable {
                 AuditFields.create(createdBy)
         );
     }
+
+    public ExerciseSeries delete(ExerciseSeries exerciseSeries, String deletedBy) {
+        assert exerciseSeries != null;
+        assert exerciseSeries.auditFields != null;
+        AuditFields newAuditFields = exerciseSeries.auditFields.delete(deletedBy);
+        return exerciseSeries.withAuditFields(newAuditFields);
+    }
 }
