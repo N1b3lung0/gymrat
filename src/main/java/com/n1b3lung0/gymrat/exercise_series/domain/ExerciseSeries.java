@@ -3,6 +3,7 @@ package com.n1b3lung0.gymrat.exercise_series.domain;
 import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import com.n1b3lung0.gymrat.exercise.domain.Exercise;
 import com.n1b3lung0.gymrat.series.domain.Series;
+import com.n1b3lung0.gymrat.workout.domain.Workout;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -45,6 +46,13 @@ public class ExerciseSeries implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne
+    @JoinColumn(name = "workout_id", nullable = false)
+    Workout workout;
+
+    @With
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne
     @JoinColumn(name = "exercise_id", nullable = false)
     Exercise exercise;
 
@@ -57,11 +65,13 @@ public class ExerciseSeries implements Serializable {
     AuditFields auditFields;
 
     public static ExerciseSeries create(
+            Workout workout,
             Exercise exercise,
             String createdBy
     ) {
         return new ExerciseSeries(
                 null,
+                workout,
                 exercise,
                 new HashSet<>(),
                 AuditFields.create(createdBy)

@@ -29,6 +29,7 @@ public class ExerciseSeriesCreator {
     @Transactional
     public ExerciseSeries create(ExerciseSeriesCreateRequest request) {
         ExerciseSeries exerciseSeries = repository.save(request.toExerciseSeries(
+                null,
                 addExercise(request.getExerciseId())
         ));
 
