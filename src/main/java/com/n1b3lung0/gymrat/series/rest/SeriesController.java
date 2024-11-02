@@ -10,7 +10,6 @@ import com.n1b3lung0.gymrat.series.application.update.SeriesUpdater;
 import com.n1b3lung0.gymrat.series.domain.Series;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

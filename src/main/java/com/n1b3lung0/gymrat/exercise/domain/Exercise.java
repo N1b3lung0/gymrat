@@ -3,7 +3,6 @@ package com.n1b3lung0.gymrat.exercise.domain;
 import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import com.n1b3lung0.gymrat.common.vo.File;
 import com.n1b3lung0.gymrat.exercise_series.domain.ExerciseSeries;
-
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CollectionTable;
