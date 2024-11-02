@@ -1,11 +1,9 @@
 package com.n1b3lung0.gymrat.series.application.create;
 
-import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import com.n1b3lung0.gymrat.series.domain.RestTime;
 import com.n1b3lung0.gymrat.series.domain.Series;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.time.ZonedDateTime;

@@ -18,6 +18,7 @@ import lombok.With;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -40,10 +41,40 @@ public class Workout implements Serializable {
     @OneToMany(mappedBy = "workout")
     Set<ExerciseSeries> exerciseSeries;
 
+    @Column(name = "start_workout")
     ZonedDateTime startWorkout;
+
+    @Column(name = "end_workout")
     ZonedDateTime endWorkout;
 
     @With
     @Embedded
     AuditFields auditFields;
+
+    public static Workout create(
+            ZonedDateTime startWorkout,
+            ZonedDateTime endWorkout
+    ) {
+        return new Workout(
+                null,
+                new HashSet<>(),
+                startWorkout,
+                endWorkout,
+                AuditFields.create("n1b3lung0")
+        );
+    }
+
+    public Workout update(Workout workout, String updatedBy) {
+        assert workout != null;
+        assert workout.auditFields != null;
+        AuditFields newAuditFields = workout.auditFields.update(updatedBy);
+        return workout.withAuditFields(newAuditFields);
+    }
+
+    public Workout delete(Workout workout, String deletedBy) {
+        assert workout != null;
+        assert workout.auditFields != null;
+        AuditFields newAuditFields = workout.auditFields.delete(deletedBy);
+        return workout.withAuditFields(newAuditFields);
+    }
 }
