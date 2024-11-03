@@ -35,7 +35,7 @@ public class WorkoutController {
 
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WorkoutResponse> findById(@PathVariable("id") String id) {
-        return new ResponseEntity<>(HttpStatusCode.valueOf(200));
+        return ResponseEntity.ok(WorkoutResponse.fromWorkout(finder.findById(id)));
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
