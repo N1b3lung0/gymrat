@@ -31,4 +31,7 @@ public final class ExceptionConstants {
 
     // EXERCISE-SERIES
     public static final String EXERCISE_SERIES_NOT_FOUND = "An Exercise Series with %s '%s' could not be found";
+
+    // WORKOUT
+    public static final String WORKOUT_NOT_FOUND = "A Workout with %s '%s' could not be found";
 }
