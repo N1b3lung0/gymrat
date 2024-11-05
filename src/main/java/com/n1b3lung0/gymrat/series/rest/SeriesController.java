@@ -1,5 +1,6 @@
 package com.n1b3lung0.gymrat.series.rest;
 
+import com.n1b3lung0.gymrat.common.base.rest.BaseRestController;
 import com.n1b3lung0.gymrat.series.application.create.SeriesCreateRequest;
 import com.n1b3lung0.gymrat.series.application.create.SeriesCreator;
 import com.n1b3lung0.gymrat.series.application.delete.SeriesDeleter;
@@ -27,14 +28,12 @@ import java.net.URI;
 @RestController
 @RequestMapping("/series")
 @RequiredArgsConstructor
-public class SeriesController {
+public class SeriesController extends BaseRestController {
 
     private final SeriesFinder finder;
     private final SeriesCreator creator;
     private final SeriesUpdater updater;
     private final SeriesDeleter deleter;
-
-    private static final String ID_PATH = "/{id}";
 
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SeriesResponse> finfById(@PathVariable("id") String id) {
