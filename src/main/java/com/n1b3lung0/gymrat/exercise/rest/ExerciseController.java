@@ -86,7 +86,7 @@ public class ExerciseController extends BaseRestController {
     @SecurityRes
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = UPDATE_EXERCISE, description = UPDATE_EXERCISE)
-    public ResponseEntity<ExerciseResponse> update(@Valid @RequestBody ExerciseUpdateRequest request) {
+    public ResponseEntity<ExerciseResponse> update(@RequestBody @Valid ExerciseUpdateRequest request) {
         return ResponseEntity.ok(ExerciseResponse.fromExercise(updater.update(request)));
     }
 

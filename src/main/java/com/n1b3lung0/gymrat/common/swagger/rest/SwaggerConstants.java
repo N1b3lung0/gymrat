@@ -29,9 +29,28 @@ public final class SwaggerConstants {
     public static final String SERVER_ERROR_CODE = "500";
     public static final String SERVER_ERROR_DESCRIPTION = "INTERNAL SERVER ERROR. Request could not be fulfilled due to an unexpected error";
 
+    // EXERCISE
     public static final String FIND_EXERCISE_BY_NAME = "Find an exercise by its unique name";
     public static final String FIND_EXERCISE_BY_CRITERIA = "Get a filtered, sorted and paginated list of exercises";
     public static final String CREATE_EXERCISE = "Create an exercise";
     public static final String UPDATE_EXERCISE = "Update a given exercise";
     public static final String DELETE_EXERCISE = "Delete a given exercise";
+
+    // SERIES
+    public static final String FIND_SERIES_BY_ID = "Find a series by its unique id";
+    public static final String CREATE_SERIES = "Create a series";
+    public static final String UPDATE_SERIES = "Update a given series";
+    public static final String DELETE_SERIES = "Delete a given series";
+
+    // EXERCISE-SERIES
+    public static final String FIND_EXERCISE_SERIES_BY_ID = "Find an exercise-series by its unique id";
+    public static final String CREATE_EXERCISE_SERIES = "Create an exercise-series";
+    public static final String UPDATE_EXERCISE_SERIES = "Update a given exercise-series";
+    public static final String DELETE_EXERCISE_SERIES = "Delete a given exercise-series";
+
+    // WORKOUT
+    public static final String FIND_WORKOUT_BY_ID = "Find a workout by its unique id";
+    public static final String CREATE_WORKOUT = "Create a workout";
+    public static final String UPDATE_WORKOUT = "Update a given workout";
+    public static final String DELETE_WORKOUT = "Delete a given workout";
 }
