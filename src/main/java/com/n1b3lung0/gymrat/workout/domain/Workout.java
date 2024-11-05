@@ -63,18 +63,4 @@ public class Workout implements Serializable {
                 AuditFields.create("n1b3lung0")
         );
     }
-
-    public Workout update(Workout workout, String updatedBy) {
-        assert workout != null;
-        assert workout.auditFields != null;
-        AuditFields newAuditFields = workout.auditFields.update(updatedBy);
-        return workout.withAuditFields(newAuditFields);
-    }
-
-    public Workout delete(Workout workout, String deletedBy) {
-        assert workout != null;
-        assert workout.auditFields != null;
-        AuditFields newAuditFields = workout.auditFields.delete(deletedBy);
-        return workout.withAuditFields(newAuditFields);
-    }
 }

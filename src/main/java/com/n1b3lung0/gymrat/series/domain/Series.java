@@ -92,8 +92,7 @@ public class Series implements Serializable {
             Float weight,
             ZonedDateTime startSeries,
             ZonedDateTime endSeries,
-            RestTime restTime,
-            String createdBy
+            RestTime restTime
     ) {
         return new Series(
                 null,
@@ -106,21 +105,7 @@ public class Series implements Serializable {
                 endSeries,
                 restTime,
                 null,
-                AuditFields.create(createdBy)
+                AuditFields.create("n1b3lung0")
         );
-    }
-
-    public Series update(Series series, String updatedBy) {
-        assert series != null;
-        assert series.auditFields != null;
-        AuditFields newAuditFields = series.auditFields.update(updatedBy);
-        return series.withAuditFields(newAuditFields);
-    }
-
-    public Series delete(Series series, String deletedBy) {
-        assert series != null;
-        assert series.auditFields != null;
-        AuditFields newAuditFields = series.auditFields.delete(deletedBy);
-        return series.withAuditFields(newAuditFields);
     }
 }

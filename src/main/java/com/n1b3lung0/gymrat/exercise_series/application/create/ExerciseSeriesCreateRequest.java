@@ -26,8 +26,7 @@ public class ExerciseSeriesCreateRequest {
     ) {
         return ExerciseSeries.create(
                 workout,
-                exercise,
-                "n1b3lung0"
+                exercise
         );
     }
 }

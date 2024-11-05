@@ -66,22 +66,14 @@ public class ExerciseSeries implements Serializable {
 
     public static ExerciseSeries create(
             Workout workout,
-            Exercise exercise,
-            String createdBy
+            Exercise exercise
     ) {
         return new ExerciseSeries(
                 null,
                 workout,
                 exercise,
                 new HashSet<>(),
-                AuditFields.create(createdBy)
+                AuditFields.create("n1b3lung0")
         );
-    }
-
-    public ExerciseSeries delete(ExerciseSeries exerciseSeries, String deletedBy) {
-        assert exerciseSeries != null;
-        assert exerciseSeries.auditFields != null;
-        AuditFields newAuditFields = exerciseSeries.auditFields.delete(deletedBy);
-        return exerciseSeries.withAuditFields(newAuditFields);
     }
 }

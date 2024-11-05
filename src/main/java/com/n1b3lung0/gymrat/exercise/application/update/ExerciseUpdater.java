@@ -1,5 +1,6 @@
 package com.n1b3lung0.gymrat.exercise.application.update;
 
+import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import com.n1b3lung0.gymrat.common.exception.application.ExceptionConstants;
 import com.n1b3lung0.gymrat.common.log.application.LogConstants;
 import com.n1b3lung0.gymrat.exercise.application.find.ExerciseFinder;
@@ -57,8 +58,8 @@ public class ExerciseUpdater {
             exercise = exercise.withSecondaryMuscles(secondaryMuscles);
         }
 
-        Exercise updated = exercise.update(exercise, "n1b3lung0");
-        exercise = repository.save(updated);
+        AuditFields auditFields = exercise.getAuditFields();
+        exercise = repository.save(exercise.withAuditFields(auditFields.update("n1b3lung0")));
         log.debug(LogConstants.UPDATED, "EXERCISE", exercise);
         return exercise;
     }

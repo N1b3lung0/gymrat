@@ -1,5 +1,6 @@
 package com.n1b3lung0.gymrat.series.application.update;
 
+import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import com.n1b3lung0.gymrat.common.log.application.LogConstants;
 import com.n1b3lung0.gymrat.series.application.find.SeriesFinder;
 import com.n1b3lung0.gymrat.series.domain.RestTime;
@@ -51,7 +52,8 @@ public class SeriesUpdater {
             series = series.withRestTime(restTime);
         }
 
-        Series updated = series.update(series, "n1b3lung0");
+        AuditFields auditFields = series.getAuditFields();
+        Series updated = series.withAuditFields(auditFields.update("n1b3lung0"));
         series = repository.save(updated);
         log.debug(LogConstants.UPDATED, "SERIES", series);
         return series;
