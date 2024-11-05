@@ -1,5 +1,6 @@
 package com.n1b3lung0.gymrat.workout.rest;
 
+import com.n1b3lung0.gymrat.common.base.rest.BaseRestController;
 import com.n1b3lung0.gymrat.workout.application.create.WorkoutCreateRequest;
 import com.n1b3lung0.gymrat.workout.application.create.WorkoutCreator;
 import com.n1b3lung0.gymrat.workout.application.delete.WorkoutDeleter;
@@ -28,14 +29,12 @@ import java.net.URI;
 @RestController
 @RequestMapping("/workouts")
 @RequiredArgsConstructor
-public class WorkoutController {
+public class WorkoutController extends BaseRestController {
 
     private final WorkoutFinder finder;
     private final WorkoutCreator creator;
     private final WorkoutUpdater updater;
     private final WorkoutDeleter deleter;
-
-    private static final String ID_PATH = "/{id}";
 
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WorkoutResponse> findById(@PathVariable("id") String id) {

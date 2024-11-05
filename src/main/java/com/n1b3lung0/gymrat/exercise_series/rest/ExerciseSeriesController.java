@@ -1,5 +1,6 @@
 package com.n1b3lung0.gymrat.exercise_series.rest;
 
+import com.n1b3lung0.gymrat.common.base.rest.BaseRestController;
 import com.n1b3lung0.gymrat.exercise_series.application.create.ExerciseSeriesCreateRequest;
 import com.n1b3lung0.gymrat.exercise_series.application.create.ExerciseSeriesCreator;
 import com.n1b3lung0.gymrat.exercise_series.application.delete.ExerciseSeriesDeleter;
@@ -25,14 +26,12 @@ import java.net.URI;
 @RestController
 @RequestMapping("/exercise-series")
 @RequiredArgsConstructor
-public class ExerciseSeriesController {
+public class ExerciseSeriesController extends BaseRestController {
 
     private final ExerciseSeriesFinder finder;
     private final ExerciseSeriesCreator creator;
     private final ExerciseSeriesUpdater updater;
     private final ExerciseSeriesDeleter deleter;
-
-    private static final String ID_PATH = "/{id}";
 
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ExerciseSeriesResponse> findById(@PathVariable String id) {
