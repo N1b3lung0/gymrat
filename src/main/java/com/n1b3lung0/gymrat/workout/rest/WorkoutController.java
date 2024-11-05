@@ -7,6 +7,7 @@ import com.n1b3lung0.gymrat.workout.application.find.WorkoutFinder;
 import com.n1b3lung0.gymrat.workout.application.find.WorkoutResponse;
 import com.n1b3lung0.gymrat.workout.application.update.WorkoutUpdateRequest;
 import com.n1b3lung0.gymrat.workout.application.update.WorkoutUpdater;
+import com.n1b3lung0.gymrat.workout.domain.Workout;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatusCode;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/workouts")
@@ -40,7 +44,12 @@ public class WorkoutController {
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> create(@RequestBody @Valid WorkoutCreateRequest request) {
-        return new ResponseEntity<>(HttpStatusCode.valueOf(201));
+        Workout workout = creator.create(request);
+        URI location = UriComponentsBuilder
+                .fromPath("/workouts/{id}")
+                .buildAndExpand(workout.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
