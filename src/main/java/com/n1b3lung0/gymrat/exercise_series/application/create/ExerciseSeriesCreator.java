@@ -10,6 +10,9 @@ import com.n1b3lung0.gymrat.exercise_series.domain.ExerciseSeriesRepository;
 import com.n1b3lung0.gymrat.series.domain.Series;
 import com.n1b3lung0.gymrat.series.domain.SeriesRepository;
 import com.n1b3lung0.gymrat.series.domain.exception.SeriesNotFound;
+import com.n1b3lung0.gymrat.workout.domain.Workout;
+import com.n1b3lung0.gymrat.workout.domain.WorkoutRepository;
+import com.n1b3lung0.gymrat.workout.domain.exception.WorkoutNotFound;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,11 +28,12 @@ public class ExerciseSeriesCreator {
     private final ExerciseSeriesRepository repository;
     private final ExerciseRepository exerciseRepository;
     private final SeriesRepository seriesRepository;
+    private final WorkoutRepository workoutRepository;
 
     @Transactional
     public ExerciseSeries create(ExerciseSeriesCreateRequest request) {
         ExerciseSeries exerciseSeries = repository.save(request.toExerciseSeries(
-                null,
+                addWorkout(request.getWorkoutId()),
                 addExercise(request.getExerciseId())
         ));
 
@@ -39,6 +43,11 @@ public class ExerciseSeriesCreator {
         ExerciseSeries created = repository.save(withSeries);
         log.debug(LogConstants.CREATED, "EXERCISE-SERIES", created);
         return created;
+    }
+
+    private Workout addWorkout(String workoutId) {
+        return workoutRepository.findById(UUIDUtils.fromString(workoutId))
+                .orElseThrow(() -> new WorkoutNotFound("id", workoutId));
     }
 
     private ExerciseSeries addSeries(ExerciseSeries exerciseSeries, Set<String> seriesIds) {
