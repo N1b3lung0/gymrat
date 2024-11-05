@@ -59,6 +59,7 @@ public class WorkoutController {
 
     @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> delete(@PathVariable("id") String id) {
-        return new ResponseEntity<>(HttpStatusCode.valueOf(204));
+        deleter.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
