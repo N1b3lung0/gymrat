@@ -55,8 +55,7 @@ public class ExerciseCreateRequest {
                 level,
                 routines,
                 primaryMuscle,
-                secondaryMuscles,
-                "n1b3lung0"
+                secondaryMuscles
         );
     }
 }

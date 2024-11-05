@@ -37,6 +37,9 @@ springdoc:
   swagger-ui:
     groups-order: DESC
     operationsSorter: method
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
 
 # LOG LEVELS
 logging:

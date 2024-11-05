@@ -114,8 +114,7 @@ public class Exercise implements Serializable {
             Level level,
             Set<Routine> routines,
             Muscle primaryMuscle,
-            Set<Muscle> secondaryMuscles,
-            String createdBy
+            Set<Muscle> secondaryMuscles
     ) {
         return new Exercise(
                 null,
@@ -128,21 +127,7 @@ public class Exercise implements Serializable {
                 primaryMuscle,
                 secondaryMuscles,
                 new HashSet<>(),
-                AuditFields.create(createdBy)
+                AuditFields.create("n1b3lung0")
         );
-    }
-
-    public Exercise update(Exercise exercise, String updatedBy) {
-        assert exercise != null;
-        assert exercise.auditFields != null;
-        AuditFields newAuditFields = exercise.auditFields.update(updatedBy);
-        return exercise.withAuditFields(newAuditFields);
-    }
-
-    public Exercise delete(Exercise exercise, String deletedBy) {
-        assert exercise != null;
-        assert exercise.auditFields != null;
-        AuditFields newAuditFields = exercise.auditFields.delete(deletedBy);
-        return exercise.withAuditFields(newAuditFields);
     }
 }

@@ -49,8 +49,7 @@ public class SeriesCreateRequest {
                 weight,
                 startSeries,
                 endSeries,
-                restTime,
-                "n1b3lung0"
+                restTime
         );
     }
 }

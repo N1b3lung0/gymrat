@@ -1,5 +1,6 @@
 package com.n1b3lung0.gymrat.workout.application.delete;
 
+import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import com.n1b3lung0.gymrat.common.log.application.LogConstants;
 import com.n1b3lung0.gymrat.workout.application.find.WorkoutFinder;
 import com.n1b3lung0.gymrat.workout.domain.Workout;
@@ -19,7 +20,8 @@ public class WorkoutDeleter {
     @Transactional
     public void delete(String id) {
         Workout workout = finder.findById(id);
-        Workout deleted = workout.delete(workout, "n1b3lung0");
+        AuditFields auditFields = workout.getAuditFields();
+        Workout deleted = workout.withAuditFields(auditFields.delete("n1b3lung0"));
         repository.save(deleted);
         log.debug(LogConstants.DELETED, "WORKOUT", deleted);
     }

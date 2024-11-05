@@ -1,5 +1,6 @@
 package com.n1b3lung0.gymrat.series.application.delete;
 
+import com.n1b3lung0.gymrat.common.audit.domain.AuditFields;
 import com.n1b3lung0.gymrat.common.log.application.LogConstants;
 import com.n1b3lung0.gymrat.series.application.find.SeriesFinder;
 import com.n1b3lung0.gymrat.series.domain.Series;
@@ -19,7 +20,8 @@ public class SeriesDeleter {
     @Transactional
     public void delete(String id) {
         Series series = finder.findById(id);
-        Series deleted = series.delete(series, "n1b3lung0");
+        AuditFields auditFields = series.getAuditFields();
+        Series deleted = series.withAuditFields(auditFields.delete("n1b3lung0"));
         repository.save(deleted);
         log.debug(LogConstants.DELETED, "SERIES", deleted);
     }
