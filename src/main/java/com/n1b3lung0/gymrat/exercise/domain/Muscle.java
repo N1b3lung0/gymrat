@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum Muscle {
     CHEST("chest"),
     BACK("back"),
-    SHOULDER("shoulder"),
+    SHOULDERS("shoulders"),
     BICEPS("biceps"),
     TRICEPS("triceps"),
     CUADRICEPS("cuadriceps"),
