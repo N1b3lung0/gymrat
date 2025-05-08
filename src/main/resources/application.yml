@@ -47,3 +47,14 @@ logging:
     ROOT: INFO
     n1b3lung0: DEBUG
     web: DEBUG
+
+# SERVICE DISCOVERY
+eureka:
+  client:
+    service-url:
+        defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    hostname: gymrat
+server:
+  port: ${PORT:0}
