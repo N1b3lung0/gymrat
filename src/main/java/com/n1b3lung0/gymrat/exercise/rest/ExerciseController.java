@@ -37,11 +37,11 @@ import java.net.URI;
 import static com.n1b3lung0.gymrat.common.swagger.rest.SwaggerConstants.CREATE_EXERCISE;
 import static com.n1b3lung0.gymrat.common.swagger.rest.SwaggerConstants.DELETE_EXERCISE;
 import static com.n1b3lung0.gymrat.common.swagger.rest.SwaggerConstants.FIND_EXERCISE_BY_CRITERIA;
-import static com.n1b3lung0.gymrat.common.swagger.rest.SwaggerConstants.FIND_EXERCISE_BY_NAME;
+import static com.n1b3lung0.gymrat.common.swagger.rest.SwaggerConstants.FIND_EXERCISE_BY_ID;
 import static com.n1b3lung0.gymrat.common.swagger.rest.SwaggerConstants.UPDATE_EXERCISE;
 
 @RestController
-@RequestMapping("/exercises")
+@RequestMapping("/gymrat/exercises")
 @RequiredArgsConstructor
 @Tag(name = "Exercises", description = "Endpoints to perform operations with exercises")
 public class ExerciseController extends BaseRestController {
@@ -54,10 +54,10 @@ public class ExerciseController extends BaseRestController {
     @OkRes
     @NotFoundRes
     @SecurityRes
-    @GetMapping(value = NAME_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = FIND_EXERCISE_BY_NAME, description = FIND_EXERCISE_BY_NAME)
-    public ResponseEntity<ExerciseResponse> findByName(@PathVariable("name") String name) {
-        return ResponseEntity.ok(ExerciseResponse.fromExercise(finder.findByName(name)));
+    @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = FIND_EXERCISE_BY_ID, description = FIND_EXERCISE_BY_ID)
+    public ResponseEntity<ExerciseResponse> findById(@PathVariable("id") String id) {
+        return ResponseEntity.ok(ExerciseResponse.fromExercise(finder.findById(id)));
     }
 
     @OkRes
@@ -93,10 +93,10 @@ public class ExerciseController extends BaseRestController {
     @NoContentRes
     @NotFoundRes
     @SecurityRes
-    @DeleteMapping(value = NAME_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = DELETE_EXERCISE, description = DELETE_EXERCISE)
-    public ResponseEntity<Void> delete(@PathVariable("name") String name) {
-        deleter.delete(name);
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
+        deleter.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

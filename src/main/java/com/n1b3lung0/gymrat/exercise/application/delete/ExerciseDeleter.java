@@ -18,8 +18,8 @@ public class ExerciseDeleter {
     private final ExerciseRepository repository;
 
     @Transactional
-    public void delete(String name) {
-        Exercise exercise = finder.findByName(name);
+    public void delete(String id) {
+        Exercise exercise = finder.findById(id);
         AuditFields auditFields = exercise.getAuditFields();
         Exercise deleted = exercise.withAuditFields(auditFields.delete("n1b3lung0"));
         repository.save(deleted);

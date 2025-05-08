@@ -30,7 +30,7 @@ public final class SwaggerConstants {
     public static final String SERVER_ERROR_DESCRIPTION = "INTERNAL SERVER ERROR. Request could not be fulfilled due to an unexpected error";
 
     // EXERCISE
-    public static final String FIND_EXERCISE_BY_NAME = "Find an exercise by its unique name";
+    public static final String FIND_EXERCISE_BY_ID = "Find an exercise by its unique id";
     public static final String FIND_EXERCISE_BY_CRITERIA = "Get a filtered, sorted and paginated list of exercises";
     public static final String CREATE_EXERCISE = "Create an exercise";
     public static final String UPDATE_EXERCISE = "Update a given exercise";
