@@ -34,4 +34,12 @@ public final class ExceptionConstants {
 
     // WORKOUT
     public static final String WORKOUT_NOT_FOUND = "A Workout with %s '%s' could not be found";
+
+    // USER
+    public static final String USER_NOT_FOUND = "User with %s '%s' could not be found";
+
+    // USER PASSWORD
+    public static final String USER_PASSWORD_REQUIRED = "User password is required";
+    public static final String USER_PASSWORD_NOT_VALID = "User password '%s' is not a valid value. Reason: %s";
+    public static final String PASSWORD_DEFAULT_REASON = "Password must contain between 8 and 20 characters with no whitespaces. It must contain at least one digit, one uppercase letter, one lowercase letter and one special character (!@#$%&*()-+=^)";
 }
