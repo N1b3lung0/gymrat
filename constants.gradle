@@ -1,5 +1,4 @@
 ext {
-    hibernateValidatorVersion = "8.0.1.Final"
     apacheCommonsLang3Version = "3.14.0"
     apacheCommonsValidatorVersion = "1.9.0"
     springdocWebmvcUIVersion = "2.0.3"
