@@ -66,6 +66,7 @@ dependencies {
 	testImplementation "org.testcontainers:postgresql:${testContainersVersion}"
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation "net.datafaker:datafaker:${datafakerVersion}"
+	testImplementation('org.mockito:mockito-core:5.+')
 }
 
 dependencyManagement {
